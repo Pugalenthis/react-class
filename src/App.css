@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap');
+
+.movie-app {
+   width: 100% !important;
+}
+
+.movie-row{
+   display: flex;
+   flex-wrap: wrap;
+}
+ 
+.movie-app h1{
+  font-family: 'Supermercado One', cursive;
+  text-align: center;
+}
+.linktolist{
+   list-style-type: none;
+   display: inline-block;
+   margin: 5px;
+   padding: 5px;
+}
+
+.inputs .form-control{
+  display: inline-block;
+}
+.bi-caret-down,.bi-caret-up{
+  font-size: 25px;
+}
+
+.bi-star-half{
+  color: orange;
+}
+
+.inputs input{
+   margin: 10px;
+   
+}
+
+.add-movie-button{
+  margin-left: 10px;
+}
+.like-button{
+  background-color: green;
+  margin-right: 5px;
+}
+
+.dislike-button{
+  background-color: red;
+}
+#movie-card img{ 
+   max-width: 300px;
+   min-height: 300px;
+   max-height: 300px;
+   object-fit: cover;
+}
+.like{
+  margin-top: 15px;  
+  display: inline;
+}
+h6{
+  display: inline;
+  margin:3px;
+}
+
+#movie-card{
+  width: 18rem;
+  height: min-content;
+}
