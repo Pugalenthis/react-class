@@ -1,28 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lemonada:wght@300&display=swap');
 
 .movie-app {
    width: 100% !important;
 }
 
-.movie-row{
+#movie-row{
    display: flex;
    flex-wrap: wrap;
+   justify-content: space-around;
 }
  
 .movie-app h1{
   font-family: 'Supermercado One', cursive;
   text-align: center;
+  margin-top : 50px;
+  margin-bottom : 50px;
 }
 .linktolist{
    list-style-type: none;
    display: inline-block;
    margin: 5px;
    padding: 5px;
+   font-family: 'Lemonada', cursive;
 }
 
-.inputs .form-control{
-  display: inline-block;
+.inputs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;  
 }
+
+.input-box{
+  margin-top: 15px !important;
+}
+
 .bi-caret-down,.bi-caret-up{
   font-size: 25px;
 }
@@ -31,13 +44,10 @@
   color: orange;
 }
 
-.inputs input{
-   margin: 10px;
-   
-}
+
 
 .add-movie-button{
-  margin-left: 10px;
+  margin-top: 15px;
 }
 .like-button{
   background-color: green;
@@ -65,4 +75,21 @@ h6{
 #movie-card{
   width: 18rem;
   height: min-content;
+}
+
+.title-rating{
+  display: flex;
+  justify-content: space-between;
+}
+.edit-info-delete div{
+   display: inline-block;
+}
+
+.edit-info-delete{
+   display: flex;
+   justify-content: space-between;
+   margin: 10px;
+}
+#editmovie-inputs{
+    margin-top: 90px;
 }

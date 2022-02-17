@@ -1,35 +1,40 @@
-import "./ColorApp.js";
-import "./ColorApp.css";
+import "./components/ColorApp.js";
+import "./Styles/ColorApp.css";
 import "./App.css";
 import { useState } from "react";
-import { Switch, Route, Link, Redirect } from "react-router-dom";
-import { Notfound } from "./Notfound";
-import { Setcolor } from "./Setcolor";
-import { Moviedetails } from "./Moviedetails";
-import { Tictactoe } from "./Tictactoe.js";
-import { Mainmovie } from "./Mainmovie.js";
-import { imovies } from "./imovies.js";
+import { Switch, Route, Link, Redirect,useHistory} from "react-router-dom";
+import { Notfound } from "./components/Notfound";
+import { Setcolor } from "./components/Setcolor";
+import { Moviedetails } from "./components/Moviedetails";
+import { Tictactoe } from "./components/Tictactoe.js";
+import { Mainmovie } from "./components/Mainmovie.js";
+import { imovies } from "./components/imovies.js";
+import { Editmovie } from "./components/Editmovie.js";
+import { Home } from "./components/Home";
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 
 
 function App() {
   const [copymovie, SetMovies] = useState(imovies);
+  const history = useHistory();
   return (
     <div>
       <div className="App">
-        <ul>
-          <li className="linktolist">
-            <Link to="/">Home</Link>
-          </li>
-          <li className="linktolist">
-            <Link to="/movies">movies</Link>
-          </li>
-          <li className="linktolist">
-            <Link to="/colorgame">Colorgame</Link>
-          </li>
-          <li className="linktolist">
-            <Link to="/tictactoe">Tictactoe game</Link>
-          </li> 
-        </ul>
+
+        <AppBar position="static">
+        <Toolbar>
+        <Button color="inherit"onClick={()=>history.push("/")}  >Home</Button>
+          <Button color="inherit"onClick={()=>history.push("/colorgame")}  >Color game</Button>
+          <Button color="inherit" onClick={()=>history.push("/tictactoe")} >Tictactoe game</Button>
+          <Button color="inherit" onClick={()=>history.push("/movies")} >Movies</Button> 
+        </Toolbar>
+      </AppBar>
 
         <Switch>
         <Route  path="/tictactoe">
@@ -37,15 +42,16 @@ function App() {
           </Route>
               
           <Route exact path="/">
-            <div className="container">
-              <div className="row">
-                <h1>Welcome to 3 in 1 game</h1>
-              </div>
-            </div>
+              <Home />
           </Route>
 
           <Route exact path="/movies/:id">
             <Moviedetails copymovie={copymovie} />
+          </Route>
+
+          <Route exact path="/movies/edit/:id">
+            
+            <Editmovie copymovie={copymovie} SetMovies={SetMovies}/>
           </Route>
 
           <Route path="/movies">
@@ -57,11 +63,7 @@ function App() {
           </Route>
 
           <Route path="/colorgame">
-            <div class="container" id="colorgame-container">
-              <div class="row" id="colorgame-row">
                 <Setcolor />
-              </div>
-            </div>
           </Route>
 
           <Route path="**">

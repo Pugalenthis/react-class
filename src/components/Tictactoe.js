@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Tictactoe.css";
+import "../Styles/Tictactoe.css";
 
 
 export function Tictactoe() {
@@ -114,7 +114,7 @@ function Tictactoegame({ val, onplayerclick }) {
     // const [val,setval]=useState(null)
     return (
       <div>
-        <div style={styles} onClick={() => onplayerclick()} className="colorbox">
+        <div style={styles} onClick={() => onplayerclick()} className="tictactoecolorbox">
           {val}
         </div>
       </div>

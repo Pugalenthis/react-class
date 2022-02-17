@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;500&display=swap');
+
+#home-row{
+    height: 80vh;
+    justify-content: center !important;
+    margin-top: 30vh;
+}
+
+#home-row h1{
+    font-size: 100px;
+    font-family: 'Orbitron', sans-serif;
+    
+}
+
+#home-row .g{
+    color: red;
+}
+#home-row .a{
+    color: blue;
+}
+#home-row .m{
+    color: green;
+}
+#home-row .e{
+    color: yellow;
+}
+#home-row .s{
+    color: violet;
+}
+
