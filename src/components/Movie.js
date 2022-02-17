@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import CardContent from '@mui/material/CardContent';
+
 
 
 export function Movie({ banner, title, rating, summary,deletebutton,id }) {
@@ -20,6 +22,7 @@ export function Movie({ banner, title, rating, summary,deletebutton,id }) {
       <div  id='movie-card' className="card mt-sm-3">
         <img src={banner} className="card-img-top " alt="..."></img>
         <div className="card-body">
+        <CardContent>
           <div className="title-rating">
             <h5 className="card-title">{title}{show === true ? <KeyboardArrowUpIcon onClick={() => { setshow(!show); }}></KeyboardArrowUpIcon> : <KeyboardArrowDownIcon onClick={() => { setshow(!show); }}></KeyboardArrowDownIcon> }</h5>
             
@@ -41,7 +44,9 @@ export function Movie({ banner, title, rating, summary,deletebutton,id }) {
 
             <button className='btn dislike-button'><i onClick={() => { dellike(dislike + 1); }} className='fa fa-thumbs-o-down'><h6>{dislike}</h6></i></button>
           </div>
+          </CardContent>
         </div>
+      
       </div>
 
     </div>
