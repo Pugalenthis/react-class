@@ -51,7 +51,7 @@ function App() {
           <Button color="inherit"onClick={()=>history.push("/colorgame")}  >Color game</Button>
           <Button color="inherit" onClick={()=>history.push("/tictactoe")} >Tictactoe game</Button>
           <Button color="inherit" onClick={()=>history.push("/movies")} >Movies</Button>
-          <Button color="inherit" onClick={()=>history.push("/basicform")} >Basicform</Button>
+          {/* <Button color="inherit" onClick={()=>history.push("/basicform")} >Basicform</Button> */}
 
           
           <Button style={{marginLeft : "auto"}} color="inherit"
@@ -66,9 +66,9 @@ function App() {
           <Route  path="/tictactoe">
                   <Tictactoe />
             </Route>
-            <Route  path="/basicform">
+            {/* <Route  path="/basicform">
                   <BasicForm />
-            </Route>
+            </Route> */}
           
             <Route exact path="/">
                 <Home />

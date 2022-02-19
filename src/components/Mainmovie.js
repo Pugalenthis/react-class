@@ -28,9 +28,9 @@ export function Mainmovie() {
 const addmvoievalidationschema =yup.object({
   title :yup.string().required("please enter valid title"),
   url : yup.string().required("please enter valid url"),
-  rating : yup.string().required("please enter valid rating"),
-  trailer: yup.string().required("please enter valid trailer"),
-  summary : yup.string().required("please enter valid summary"),
+  rating : yup.number().required("please enter valid rating").min(0,"minimum 0").max(10,"maxiumum 10"),
+  trailer: yup.string().required("please enter valid trailer").min(4,"minimum 4 character"),
+  summary : yup.string().required("please enter valid summary").min(20,"need a longer summary"),
 
 })
 
@@ -61,6 +61,8 @@ function  Addmovieform({copymovie,SetMovies}){
           <form className="inputs" onSubmit={formik.handleSubmit}>
       
             <TextField
+            error={formik.touched.title && formik.errors.title}
+            helperText={formik.touched.title && formik.errors.title ? formik.errors.title: ""}
             type="text"
             id="title"
             name="title"
@@ -72,9 +74,12 @@ function  Addmovieform({copymovie,SetMovies}){
               id="outlined-basic"
               label="Enter your movie title"
               variant="outlined"
-            />{formik.touched.title && formik.errors.title ? formik.errors.title: ""}
-            <TextField
+            />
+            <TextField 
+            error={formik.touched.url && formik.errors.url}
+            helperText={formik.touched.url && formik.errors.url ? formik.errors.url: ""}
               className="input-box"
+             
               type ="text"
               id="url"
               name="url"
@@ -86,8 +91,10 @@ function  Addmovieform({copymovie,SetMovies}){
               
               label="Enter your movie image url"
               variant="outlined"
-            />{formik.touched.url && formik.errors.url ? formik.errors.url: ""}
+            />
             <TextField
+            error={formik.touched.rating && formik.errors.rating}
+            helperText={formik.touched.rating && formik.errors.rating ? formik.errors.rating: ""}
             type ="number"
              id="rating"
              name ="rating"
@@ -100,8 +107,10 @@ function  Addmovieform({copymovie,SetMovies}){
               
               label="Enter your movie rating"
               variant="outlined"
-            />{formik.touched.rating && formik.errors.rating ? formik.errors.rating: ""}
+            />
             <TextField
+            error={formik.touched.trailer && formik.errors.trailer}
+            helperText={formik.touched.trailer && formik.errors.trailer ? formik.errors.trailer: ""}
             type ="text"
             id="trailer"
             name ="trailer"
@@ -114,8 +123,10 @@ function  Addmovieform({copymovie,SetMovies}){
               
               label="Enter your movie trailer"
               variant="outlined"
-            />{formik.touched.trailer && formik.errors.trailer ? formik.errors.trailer: ""}
+            />
             <TextField
+            error={formik.touched.summary && formik.errors.summary}
+            helperText={formik.touched.summary && formik.errors.summary ? formik.errors.summary: ""}
               className="input-box"
               type ="text"
               id="summary"
@@ -128,7 +139,7 @@ function  Addmovieform({copymovie,SetMovies}){
               
               label="Enter your movie summary"
               variant="outlined"
-            />{formik.touched.summary && formik.errors.summary ? formik.errors.summary: ""}
+            />
             <button
               type="submit"
               // onClick={() => {

@@ -18,8 +18,8 @@ export function Moviedetails({copymovie={copymovie},SetMovies={SetMovies}}) {
 
   const moviestyles = {
     width: "100%",
-    height: "300px",
-    objectFit: "cover"
+    height: "400px",
+    
   };
   const movie = copymovie;
   return (
