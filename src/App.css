@@ -65,7 +65,7 @@
 }
 .like{
   margin-top: 15px;  
-  display: inline;
+  display: flex;
 }
 h6{
   display: inline;
@@ -81,15 +81,7 @@ h6{
   display: flex;
   justify-content: space-between;
 }
-.edit-info-delete div{
-   display: inline-block;
-}
 
-.edit-info-delete{
-   display: flex;
-   justify-content: space-between;
-   margin: 10px;
-}
 #editmovie-inputs{
     margin-top: 90px;
 }

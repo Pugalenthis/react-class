@@ -1,8 +1,8 @@
 import "./components/ColorApp.js";
 import "./Styles/ColorApp.css";
 import "./App.css";
-import { useState } from "react";
-import { Switch, Route, Link, Redirect,useHistory} from "react-router-dom";
+import { useState} from "react";
+import { Switch, Route,Redirect,useHistory} from "react-router-dom";
 import { Notfound } from "./components/Notfound";
 import { Setcolor } from "./components/Setcolor";
 import { Moviedetails } from "./components/Moviedetails";
@@ -18,22 +18,26 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { BasicForm } from "./BasicForm";
 
  
 
 
 function App() {
+  
+  const [copymovie, SetMovies] = useState([]);
 
-  const [copymovie, SetMovies] = useState(imovies);
+  
   const history = useHistory();
 
-  const[mode,setmode]=useState("dark")
+  const[mode,setmode]=useState("light")
 
   const theme = createTheme({
     palette: {
       mode: mode,
     },
   });
+  
   
 
   return (
@@ -47,8 +51,10 @@ function App() {
           <Button color="inherit"onClick={()=>history.push("/colorgame")}  >Color game</Button>
           <Button color="inherit" onClick={()=>history.push("/tictactoe")} >Tictactoe game</Button>
           <Button color="inherit" onClick={()=>history.push("/movies")} >Movies</Button>
+          <Button color="inherit" onClick={()=>history.push("/basicform")} >Basicform</Button>
+
           
-          <Button color="inherit"
+          <Button style={{marginLeft : "auto"}} color="inherit"
           startIcon ={theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
            onClick={()=>setmode(mode==="light"?"dark":"light")} >{mode==="dark"?"Light" : "Dark"}mode</Button> 
 
@@ -60,15 +66,17 @@ function App() {
           <Route  path="/tictactoe">
                   <Tictactoe />
             </Route>
+            <Route  path="/basicform">
+                  <BasicForm />
+            </Route>
           
             <Route exact path="/">
                 <Home />
             </Route>
             <Route exact path="/movies/:id">
-              <Moviedetails copymovie={copymovie} />
+              <Moviedetails copymovie={copymovie} SetMovies={SetMovies} />
             </Route>
             <Route exact path="/movies/edit/:id">
-          
               <Editmovie copymovie={copymovie} SetMovies={SetMovies}/>
             </Route>
             <Route path="/movies">
@@ -79,7 +87,7 @@ function App() {
             </Route>
             <Route path="/colorgame">
                   <Setcolor />
-            </Route>
+     G       </Route>
             <Route path="**">
               <Notfound />
             </Route>
@@ -92,8 +100,12 @@ function App() {
 }
 
 
-
 export default App;
+
+
+
+
+
 
 // Exact keyword in react;
 // <Route exact path="/">

@@ -1,4 +1,8 @@
 #moviedetails-row{
-    height: 80px;
-    margin-top: 10px;
+    
+    margin-top: 50px;
+}
+
+#moviedetails-container{
+    margin-top: 50px !important;
 }

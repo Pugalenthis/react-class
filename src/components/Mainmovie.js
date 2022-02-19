@@ -1,79 +1,152 @@
 import { useState } from "react";
 import { Movie } from "./Movie";
 import TextField from "@mui/material/TextField";
+import { useEffect } from "react";
+import { API } from "./global";
+import { useHistory } from "react-router-dom";
+import CircularProgress from '@mui/material/CircularProgress';
+import { useFormik } from "formik";
+import * as yup from "yup";
 
-export function Mainmovie({ copymovie, SetMovies }) {
-  const [title, SetTitle] = useState();
-  const [url, SetUrl] = useState();
-  const [rating, SetRating] = useState();
-  const [summary, SetSummary] = useState();
+
+export function Mainmovie() {
+
+  const [copymovie,SetMovies]= useState(null)
+
+  useEffect(() => {
+    fetch(`${API}`, { method: "GET" })
+      .then((data) => data.json())
+      .then((res) => SetMovies(res));
+  }, []);
 
   return (
+      <div>
+         {copymovie ? <Addmovieform copymovie={copymovie} SetMovies={SetMovies}/> : <CircularProgress style={{position : "absolute",top :"45%",left:"45%" ,width:"50px",height:"50px"}} /> } 
+      </div>
+  );
+}
+const addmvoievalidationschema =yup.object({
+  title :yup.string().required("please enter valid title"),
+  url : yup.string().required("please enter valid url"),
+  rating : yup.string().required("please enter valid rating"),
+  trailer: yup.string().required("please enter valid trailer"),
+  summary : yup.string().required("please enter valid summary"),
+
+})
+
+
+function  Addmovieform({copymovie,SetMovies}){
+  
+  const formik =useFormik({
+    initialValues: {title:"",url:"",rating:"",trailer:"",summary:""},
+     validationSchema :addmvoievalidationschema,
+     onSubmit : (values)=>{
+       console.log("onSubmit",values)
+       createmovie(values);
+     }
+  })
+ 
+  const history= useHistory();
+
+  // const [title, SetTitle] = useState();
+  // const [url, SetUrl] = useState();
+  // const [rating, SetRating] = useState();
+  // const [summary, SetSummary] = useState();
+  // const [trailer, SetTrailer] = useState();
+  return(
     <div class="container">
       <div class="movie-app">
         <h1>Add your favourite movie</h1>
-        <div className="inputs">
-          <TextField
-            className="input-box"
-            size="medium"
-            onChange={(val) => {
-              SetTitle(val.target.value);
-            }}
-            id="outlined-basic"
-            label="Enter your movie title"
-            variant="outlined"
-          />
-
-          <TextField
-            className="input-box"
-            size="medium"
-            id="outlined-basic"
-            onChange={(val) => {
-              SetUrl(val.target.value);
-              console.log(url);
-            }}
-            label="Enter your movie image url"
-            variant="outlined"
-          />
-
-          <TextField
-            className="input-box"
-            size="medium"
-            id="outlined-basic"
-            onChange={(val) => {
-              SetRating(val.target.value);
-            }}
-            label="Enter your movie rating"
-            variant="outlined"
-          />
-
-          <TextField
-            className="input-box"
-            size="medium"
-            id="outlined-basic"
-            onChange={(val) => {
-              SetSummary(val.target.value);
-            }}
-            label="Enter your movie summary"
-            variant="outlined"
-          />
-
-          <button
-            type="submit"
-            onClick={() => {
-              const addmovie = {
-                title: title,
-                banner: url,
-                rating: rating,
-                summary: summary,
-              };
-
-              SetMovies([...copymovie, addmovie]);
-            }}
-            className="btn bg-primary add-movie-button mb-2"
-          >
-            Add movie
-          </button>
+       
+          <form className="inputs" onSubmit={formik.handleSubmit}>
+      
+            <TextField
+            type="text"
+            id="title"
+            name="title"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.title}
+              className="input-box"
+              size="medium"
+              id="outlined-basic"
+              label="Enter your movie title"
+              variant="outlined"
+            />{formik.touched.title && formik.errors.title ? formik.errors.title: ""}
+            <TextField
+              className="input-box"
+              type ="text"
+              id="url"
+              name="url"
+              onChange ={formik.handleChange}
+              onBlur ={formik.handleBlur}
+              value={formik.values.url}
+              size="medium"
+              id="outlined-basic"
+              
+              label="Enter your movie image url"
+              variant="outlined"
+            />{formik.touched.url && formik.errors.url ? formik.errors.url: ""}
+            <TextField
+            type ="number"
+             id="rating"
+             name ="rating"
+             onChange ={formik.handleChange}
+             value={formik.values.rating}
+             onBlur ={formik.handleBlur}
+              className="input-box"
+              size="medium"
+              id="outlined-basic"
+              
+              label="Enter your movie rating"
+              variant="outlined"
+            />{formik.touched.rating && formik.errors.rating ? formik.errors.rating: ""}
+            <TextField
+            type ="text"
+            id="trailer"
+            name ="trailer"
+            value={formik.values.trailer}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+              className="input-box"
+              size="medium"
+              id="outlined-basic"
+              
+              label="Enter your movie trailer"
+              variant="outlined"
+            />{formik.touched.trailer && formik.errors.trailer ? formik.errors.trailer: ""}
+            <TextField
+              className="input-box"
+              type ="text"
+              id="summary"
+              name ="summary"
+              value={formik.values.summary}
+              onChange ={formik.handleChange}
+              onBlur={formik.handleBlur}
+              size="medium"
+              id="outlined-basic"
+              
+              label="Enter your movie summary"
+              variant="outlined"
+            />{formik.touched.summary && formik.errors.summary ? formik.errors.summary: ""}
+            <button
+              type="submit"
+              // onClick={() => {
+              //   // const addmovie = {
+              //   //   title: title,
+              //   //   banner: url,
+              //   //   rating: rating,
+              //   //   summary: summary,
+              //   //   trailer:trailer
+              //   // };
+                // createmovie(addmovie);
+              // }}
+              className="btn bg-primary add-movie-button mb-2"
+            >
+              Add movie
+            </button>
+         
+          </form>
         </div>
         <div class="container">
           <div class="row" id="movie-row">
@@ -83,23 +156,27 @@ export function Mainmovie({ copymovie, SetMovies }) {
                 title={info.title}
                 rating={info.rating}
                 summary={info.summary}
-                deletebutton={
-                  <i
-                    onClick={() => {
-                      console.log(index);
-                      const copycopymovies = [...copymovie];
-                      copycopymovies.splice(index, 1);
-                      SetMovies(copycopymovies);
-                    }}
-                    class="bi bi-trash3  ml-2"
-                  ></i>
-                }
+                movieid={info.id}
+                
                 id={index}
               />
             ))}
           </div>
         </div>
       </div>
-    </div>
-  );
+  
+  )
 }
+
+
+
+const createmovie = (addmovie) => {
+  fetch(`${API}`, {
+    method: "POST",
+    body: JSON.stringify(addmovie),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+};
