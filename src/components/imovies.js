@@ -24,19 +24,19 @@ export const imovies = [{
      "trailer": "https://www.youtube.com/embed/N2pi_puyYAk"
     },
     {
-     "id": "104",
-     "banner": "https://static.toiimg.com/photo/73579998.jpeg",
-     "title": "OH MY KADAVULEY",
-     "rating": 8,
-     "summary": "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form ",
-     "trailer": "https://www.youtube.com/embed/5lUWBM2uYaQ"
-    },
-    {
-     "id": "105",
-     "banner": "https://moviegalleri.net/wp-content/uploads/2018/07/Trisha-Krishnan-Vijay-Sethupathi-96-Movie-New-Poster.jpg",
-     "title": "96",
-     "rating": 8,
-     "summary": "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form ",
-     "trailer": "https://www.youtube.com/embed/r0synl-lI4I"
-    }
+         "id": "104",
+         "banner": "https://static.toiimg.com/photo/73579998.jpeg",
+         "title": "OH MY KADAVULEY",
+         "rating": 8,
+         "summary": "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form ",
+         "trailer": "https://www.youtube.com/embed/5lUWBM2uYaQ"
+     },
+     { 
+          "id": "105",
+          "banner": "https://moviegalleri.net/wp-content/uploads/2018/07/Trisha-Krishnan-Vijay-Sethupathi-96-Movie-New-Poster.jpg",
+      "title": "96",
+      "rating": 8,
+      "summary": "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form ",
+      "trailer": "https://www.youtube.com/embed/r0synl-lI4I"
+     }
    ]

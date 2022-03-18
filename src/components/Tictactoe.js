@@ -120,4 +120,3 @@ function Tictactoegame({ val, onplayerclick }) {
       </div>
     );
   }
-

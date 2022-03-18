@@ -34,8 +34,8 @@ export function Editmovie() {
 }
 
 const editmvoievalidationschema =yup.object({
-  title :yup.string().required("please enter valid title"),
-  url : yup.string().required("please enter valid url"),
+  name :yup.string().required("please enter valid name"),
+  poster : yup.string().required("please enter valid poster"),
   rating : yup.number().required("please enter valid rating").min(0,"minimum 0").max(10,"maxiumum 10"),
   trailer: yup.string().required("please enter valid trailer").min(4,"minimum 4 character"),
   summary : yup.string().required("please enter valid summary").min(20,"need a longer summary"),
@@ -46,7 +46,7 @@ const editmvoievalidationschema =yup.object({
 function Editmovieform({Editcopymovie={Editcopymovie}}){
 
   const formik =useFormik({
-    initialValues: {title: Editcopymovie.title,url:Editcopymovie.banner,rating:Editcopymovie.rating,trailer:Editcopymovie.trailer,summary:Editcopymovie.summary},
+    initialValues: {name: Editcopymovie.name,poster:Editcopymovie.poster,rating:Editcopymovie.rating,trailer:Editcopymovie.trailer,summary:Editcopymovie.summary},
      validationSchema :editmvoievalidationschema,
      onSubmit : (values)=>{
        console.log("onSubmit",values)
@@ -75,33 +75,33 @@ function Editmovieform({Editcopymovie={Editcopymovie}}){
         <div >
           <form className="inputs" id="editmovie-inputs" onSubmit={formik.handleSubmit}>
             <TextField
-            error={formik.touched.title && formik.errors.title}
-            helperText={formik.touched.title && formik.errors.title ? formik.errors.title: ""}
+            error={formik.touched.name && formik.errors.name}
+            helperText={formik.touched.name && formik.errors.name ? formik.errors.name: ""}
             type="text"
-            id="title"
-            name="title"
+            id="name"
+            name="name"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
               className="input-box"
-              value={formik.values.title}
+              value={formik.values.name}
                   size="medium"
               id="outlined-basic"
-              label="Enter your movie title"
+              label="Enter your movie name"
               variant="outlined"
             />
             <TextField
               className="input-box"
-              error={formik.touched.url && formik.errors.url}
-              helperText={formik.touched.url && formik.errors.url ? formik.errors.url: ""}
-              value={formik.values.url}            type ="text"
-                id="url"
-                name="url"
+              error={formik.touched.poster && formik.errors.poster}
+              helperText={formik.touched.poster && formik.errors.poster ? formik.errors.poster: ""}
+              value={formik.values.poster}            type ="text"
+                id="poster"
+                name="poster"
                 onChange ={formik.handleChange}
                 onBlur ={formik.handleBlur}
               size="medium"
               id="outlined-basic"
             
-              label="Enter your movie image url"
+              label="Enter your movie image poster"
               variant="outlined"
             />
             <TextField
@@ -158,7 +158,7 @@ function Editmovieform({Editcopymovie={Editcopymovie}}){
               type="submit"
               className="btn bg-primary add-movie-button"
             >
-              Save Movie
+             Save Movie
             </button>
           </form>
         </div>

@@ -69,6 +69,7 @@ function App() {
             {/* <Route  path="/basicform">
                   <BasicForm />
             </Route> */}
+            
           
             <Route exact path="/">
                 <Home />
@@ -87,7 +88,7 @@ function App() {
             </Route>
             <Route path="/colorgame">
                   <Setcolor />
-     G       </Route>
+           </Route>
             <Route path="**">
               <Notfound />
             </Route>
@@ -107,79 +108,3 @@ export default App;
 
 
 
-// Exact keyword in react;
-// <Route exact path="/">
-//             <div className="container">
-//               <div className="row">
-//                 <h1>Welcome to 3 in 1 game</h1>
-//               </div>
-//             </div>
-// </Route>
-
-// not found route path
-// <Route path="**">
-//   <Notfound />
-// </Route>
-
-//  readirecting
-//   <Route path="/films">
-//   <Redirect to="/movies" />
-// </Route>
-
-// passing jsx in props ;
-//         <div class="container">
-//         <div class="row" id="movie-row">
-//           {copymovie.map((info) => (
-//             <Movie
-//               banner={info.banner}
-//               title={info.title}
-//               rating={info.rating}
-//               summary={info.summary}
-//               deletebutton={<button>Delete me🧨🧨</button>}
-//             />
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   </div>
-// </div>
-
-// {copymovie.map((info) => (
-//   <Movie
-//     banner={info.banner}
-//     title={info.title}
-//     rating={info.rating}
-//     summary={info.summary}
-//     deletebutton={<button>Delete me🧨🧨</button>}
-//   />
-// ))}
-
-// DELETING A SPECIFIC MOVIE FROM MOVIE Array;
-
-// {copymovie.map((info,index) => (
-//   <Movie
-//     banner={info.banner}
-//     title={info.title}
-//     rating={info.rating}
-//     summary={info.summary}
-//     deletebutton={<button onClick={()=>{
-//       console.log(index)
-//       const copycopymovies= [...copymovie]
-//       copycopymovies.splice(index,1)
-//       SetMovies(copycopymovies)
-//     }
-//     }>Delete me🧨🧨</button>}
-// />
-// ))}
-
-// if want to change url by clicking button please use -use history
-
-// const history =useHistory();
-
-// index=id
-
-// export function Movie({ banner, title, rating, summary,deletebutton,id }) {
-
-// import { useHistory } from 'react-router-dom';
-
-// <h5 className="card-title">{title}{show === true ? <i onClick={() => { setshow(!show); }} class="bi bi-caret-down"></i> : <i onClick={() => { history.push(`/movies${id}`); }} class="bi bi-caret-up"></i>}<i class="bi bi-info-circle"></i> </h5>

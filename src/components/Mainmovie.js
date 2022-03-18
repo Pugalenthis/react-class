@@ -14,7 +14,7 @@ export function Mainmovie() {
   const [copymovie,SetMovies]= useState(null)
 
   useEffect(() => {
-    fetch(`${API}`, { method: "GET" })
+    fetch(`${API}movies`, { method: "GET" })
       .then((data) => data.json())
       .then((res) => SetMovies(res));
   }, []);
@@ -26,8 +26,8 @@ export function Mainmovie() {
   );
 }
 const addmvoievalidationschema =yup.object({
-  title :yup.string().required("please enter valid title"),
-  url : yup.string().required("please enter valid url"),
+  name :yup.string().required("please enter valid name"),
+  poster : yup.string().required("please enter valid poster"),
   rating : yup.number().required("please enter valid rating").min(0,"minimum 0").max(10,"maxiumum 10"),
   trailer: yup.string().required("please enter valid trailer").min(4,"minimum 4 character"),
   summary : yup.string().required("please enter valid summary").min(20,"need a longer summary"),
@@ -38,7 +38,7 @@ const addmvoievalidationschema =yup.object({
 function  Addmovieform({copymovie,SetMovies}){
   
   const formik =useFormik({
-    initialValues: {title:"",url:"",rating:"",trailer:"",summary:""},
+    initialValues: {name:"",poster:"",rating:"",trailer:"",summary:""},
      validationSchema :addmvoievalidationschema,
      onSubmit : (values)=>{
        console.log("onSubmit",values)
@@ -48,12 +48,12 @@ function  Addmovieform({copymovie,SetMovies}){
  
   const history= useHistory();
 
-  // const [title, SetTitle] = useState();
-  // const [url, SetUrl] = useState();
+  // const [name, Setname] = useState();
+  // const [poster, Setposter] = useState();
   // const [rating, SetRating] = useState();
   // const [summary, SetSummary] = useState();
-  // const [trailer, SetTrailer] = useState();
-  return(
+  // const [trailer, SetTrailer] = useState
+  return( 
     <div class="container">
       <div class="movie-app">
         <h1>Add your favourite movie</h1>
@@ -61,35 +61,35 @@ function  Addmovieform({copymovie,SetMovies}){
           <form className="inputs" onSubmit={formik.handleSubmit}>
       
             <TextField
-            error={formik.touched.title && formik.errors.title}
-            helperText={formik.touched.title && formik.errors.title ? formik.errors.title: ""}
+            error={formik.touched.name && formik.errors.name}
+            helperText={formik.touched.name && formik.errors.name ? formik.errors.name: ""}
             type="text"
-            id="title"
-            name="title"
+            id="name"
+            name="name"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.title}
+            value={formik.values.name}
               className="input-box"
               size="medium"
               id="outlined-basic"
-              label="Enter your movie title"
+              label="Enter your movie name"
               variant="outlined"
             />
             <TextField 
-            error={formik.touched.url && formik.errors.url}
-            helperText={formik.touched.url && formik.errors.url ? formik.errors.url: ""}
+            error={formik.touched.poster && formik.errors.poster}
+            helperText={formik.touched.poster && formik.errors.poster ? formik.errors.poster: ""}
               className="input-box"
              
               type ="text"
-              id="url"
-              name="url"
+              id="poster"
+              name="poster"
               onChange ={formik.handleChange}
               onBlur ={formik.handleBlur}
-              value={formik.values.url}
+              value={formik.values.poster}
               size="medium"
               id="outlined-basic"
               
-              label="Enter your movie image url"
+              label="Enter your movie image poster"
               variant="outlined"
             />
             <TextField
@@ -144,8 +144,8 @@ function  Addmovieform({copymovie,SetMovies}){
               type="submit"
               // onClick={() => {
               //   // const addmovie = {
-              //   //   title: title,
-              //   //   banner: url,
+              //   //   name: name,
+              //   //   banner: poster,
               //   //   rating: rating,
               //   //   summary: summary,
               //   //   trailer:trailer
@@ -163,8 +163,8 @@ function  Addmovieform({copymovie,SetMovies}){
           <div class="row" id="movie-row">
             {copymovie.map((info, index) => (
               <Movie
-                banner={info.banner}
-                title={info.title}
+                poster={info.poster}
+                name={info.name}
                 rating={info.rating}
                 summary={info.summary}
                 movieid={info.id}
@@ -175,7 +175,6 @@ function  Addmovieform({copymovie,SetMovies}){
           </div>
         </div>
       </div>
-  
   )
 }
 

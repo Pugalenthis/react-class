@@ -38,7 +38,10 @@ function Colorbox({color}){
        marginTop : "10px"
   }
    return (
-      <div style={styles}></div>
+      <div style={styles}>
+        
+      </div>
+      
    )
 }
 
